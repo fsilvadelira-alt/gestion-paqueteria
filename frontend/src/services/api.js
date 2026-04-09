@@ -1,9 +1,13 @@
 import axios from 'axios';
 
-// Detecta automáticamente el host correcto:
-// - Si accedes desde localhost/127.0.0.1 → usa localhost
-// - Si accedes desde la red (IP o dominio) → usa el hostname del navegador
+// En producción usa la variable de entorno VITE_API_URL (definida en .env.production)
+// En desarrollo detecta automáticamente el host local con HTTPS
 const getBaseURL = () => {
+    // Si hay una variable de entorno definida en build-time, úsala (producción)
+    if (import.meta.env.VITE_API_URL) {
+        return import.meta.env.VITE_API_URL;
+    }
+    // Fallback para desarrollo local
     const hostname = window.location.hostname;
     const isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
     const backendHost = isLocal ? 'localhost' : hostname;
