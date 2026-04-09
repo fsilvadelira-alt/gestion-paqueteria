@@ -1,4 +1,11 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home1/icaautoma/rp
-    - /bin/cp -R * $DEPLOYPATH
+    # 1. Despliegue del Frontend (Aplicación React compilada)
+    - export FRONTEND_PATH=/home1/icautoma/rp
+    - /bin/cp -R frontend/dist/* $FRONTEND_PATH
+
+    # 2. Despliegue del Backend (API Node.js)
+    # Reemplaza 'api_rp' por la ruta raíz de la aplicación Node.js en cPanel
+    - export BACKEND_PATH=/home1/icautoma/api_rp
+    - /bin/mkdir -p $BACKEND_PATH
+    - /bin/cp -R backend/* $BACKEND_PATH
