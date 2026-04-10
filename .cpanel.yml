@@ -1,7 +1,7 @@
 deployment:
   tasks:
     # Ruta raíz del subdominio rp.icautomatizacion.com en HostGator
-    - export DEST=/home1/icautoma/rp
+    - export DEST=/home1/icautoma/rp.icautomatizacion.com
 
     # 1. Desplegar el frontend compilado (archivos React)
     - /bin/cp -R frontend/dist/. $DEST
