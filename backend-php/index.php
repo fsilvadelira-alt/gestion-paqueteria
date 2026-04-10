@@ -40,12 +40,12 @@ $path   = trim($_GET['_ruta'] ?? $_SERVER['PATH_INFO'] ?? '/', '/');
 $parts  = explode('/', $path);
 $body   = json_decode(file_get_contents('php://input'), true) ?? [];
 
-// Ej: /api/auth/login → parts = ['api','auth','login']
-//     /api/packages/5 → parts = ['api','packages','5']
-$resource = $parts[1] ?? ''; // auth, packages, carriers, etc.
-$id       = isset($parts[2]) && is_numeric($parts[2]) ? (int)$parts[2] : null;
-$sub      = $parts[2] ?? null; // rutas especiales ej: 'health'
-$subId    = $parts[3] ?? null;
+// Ej: auth/login → parts = ['auth','login']
+//     packages/5 → parts = ['packages','5']
+$resource = $parts[0] ?? ''; // auth, packages, carriers, etc.
+$id       = isset($parts[1]) && is_numeric($parts[1]) ? (int)$parts[1] : null;
+$sub      = $parts[1] ?? null; // rutas especiales ej: 'health'
+$subId    = $parts[2] ?? null;
 
 // ============================================================
 // Cargar el controller correspondiente
