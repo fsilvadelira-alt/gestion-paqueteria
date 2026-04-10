@@ -33,10 +33,10 @@ function jsonResponse(mixed $data, int $code = 200): never {
 }
 
 // ============================================================
-// Router basado en PATH_INFO
+// Router basado en PATH_INFO o Query param (_ruta)
 // ============================================================
 $method = $_SERVER['REQUEST_METHOD'];
-$path   = trim($_SERVER['PATH_INFO'] ?? '/', '/');
+$path   = trim($_GET['_ruta'] ?? $_SERVER['PATH_INFO'] ?? '/', '/');
 $parts  = explode('/', $path);
 $body   = json_decode(file_get_contents('php://input'), true) ?? [];
 
